@@ -1,8 +1,8 @@
 user = "admin"
 pwd = "dlwndwo2"
-host = "tutorial.crotgxtzxtks.ap-northeast-2.rds.amazonaws.com"
+host = "https://nest-database.cdg64u0o8ii4.ap-southeast-2.rds.amazonaws.com/"
 port = 3306
-db_url = f'mysql+pymysql://{user}:{quote(pwd)}@{host}:{port}/information?charset=utf8mb4'
+db_url = f'mysql+pymysql://{user}:{quote(locallocal)}@{host}:{3306}/information?charset=utf8mb4'
 
 
 

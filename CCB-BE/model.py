@@ -1,25 +1,26 @@
-from typing import Optional, List
-from uuid import UUID, uuid4
+# coding: utf-8
+from sqlalchemy import Column, Integer, String
 from pydantic import BaseModel
-from enum import Enum
+from db import Base
+from db import ENGINE
 
-#유저 성별
-class Gender(str, Enum):
-    male = "M"
-    female = "F"
 
-# 유저 역할
-class Role(str, Enum): 
-    admin = "admin"
-    user = "user"
-    student = "student"
+class UserTable(Base):
+    __tablename__ = 'user'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(30), nullable=True)
+    age = Column(Integer)
 
 
 class User(BaseModel):
-    # Optional : 필수적으로 필요한 것은 아님
-    id : Optional[UUID] = uuid4() # UUID : 범용 공유 식별자(Universally unique indentifier)
-    first_name : str
-    last_name : str
-    middle_name : Optional[str]
-    gender : Gender # class로 정의되어 있음
-    roles : List[Role]
+    id   : int
+    name : str
+    age  : int
+
+
+def main():
+    # Table 없으면 생성
+    Base.metadata.create_all(bind=ENGINE)
+
+if __name__ == "__main__":
+    main()

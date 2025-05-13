@@ -3,17 +3,11 @@ from enum import Enum
 
 from fastapi.responses import FileResponse
 
-from board import board_router
-from user import user_router
-
 import models
 from database import engine
 models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI(tags=["회원가입"])
-
-app.include_router(board_router.app, tags=["[CCB] 회원가입 CRUD"])
-app.include_router(user_router.app, tags=["[CCB] Test"])
+app = FastAPI()
 
 #get_db()
 
@@ -38,4 +32,4 @@ async def get_model(model_name: ModelName):
 
 @app.get("/")
 def read_root():
-    return FileResponse('user_list.html', tags=["회원가입"])
+    return FileResponse('user_list.html')
